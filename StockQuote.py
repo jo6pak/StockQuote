@@ -60,13 +60,16 @@ def post_quote(quote, price, change):
 	lcd.clear()
 
 	# Set LCd backlight color to red or green 
-	if float(change) < 0:
-        	lcd.set_color(1.0,0.0,0.0)
-		#print colored(elem + ": " + price + " " + change, 'red')
-	else:
-		lcd.set_color(0.0,1.0,0.0)
-		#print colored(elem + ": " + price + " " + change, 'green')
-	
+	try:
+		if float(change) < 0:
+        		lcd.set_color(1.0,0.0,0.0)
+			#print colored(elem + ": " + price + " " + change, 'red')
+		else:
+			lcd.set_color(0.0,1.0,0.0)
+			#print colored(elem + ": " + price + " " + change, 'green')
+	except Exception: 
+		print("Debug: Post Quote exception")
+		pass
 	# Quote on first line + price info on second line
 	lcd.message(empty_space + quote + '\n' + empty_space + price + ' ' + change)
 	
@@ -85,6 +88,9 @@ while 1:
 
 	# parse the ticker symbol list for individual symbols and print out current price and change since previous days close.
 	for elem in tickerSymbol:	
-		allInfo = ystockquote.get_all(elem)
+		try: allInfo = ystockquote.get_all(elem)
+		except Exception:
+			print("Debug: Hit Exception...ignore")
+			pass
 		post_quote(elem, allInfo["price"], allInfo["change"])
 	
