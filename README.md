@@ -8,4 +8,4 @@ Simple Python script that creates a Stock Ticker using:
 
 Stocks that are up are displayed in Green and stocks that are down in Red.
 
-![Stock Ticker Gif](https://www.dropbox.com/s/gfljep7hlp4q58w/animation.gif?raw=1)
+![StockQuoteAnimation](animation.gif)
